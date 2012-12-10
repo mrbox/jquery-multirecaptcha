@@ -1,0 +1,66 @@
+$ = jQuery
+
+$.fn.extend
+    multirecaptcha: (options) ->
+        recaptcha_div = null
+        focused_form = null
+
+        settings =
+            public_key: ''
+            theme: 'red'
+            always_refresh: true
+            recaptcha_src: "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"
+            debug: true
+
+        settings = $.extend settings, options
+        log = (msg) ->
+            console?.log msg if settings.debug
+
+        script_exists = (src) ->
+            $("script[src='"+src+"']").length > 0
+
+        clear_recaptcha = ->
+            true
+
+        show_captcha_in_form = (form) ->
+            true
+
+        if not script_exists(settings.recaptcha_src)
+            $.getScript(settings.recaptcha_src, ->
+                recaptcha_wrapper = document.createElement("div")
+                recaptcha_wrapper.id = "recaptcha_wrapper"
+                $(recaptcha_wrapper).css "display", "none"
+                $("body").append recaptcha_wrapper
+
+                recaptcha_temp_div = document.createElement("div")
+                recaptcha_temp_div.id = "captcha_div"
+                $(recaptcha_wrapper).append recaptcha_temp_div
+
+                Recaptcha.create settings.public_key, "captcha_div",
+                    theme: settings.theme
+
+                recaptcha_div = $("#recaptcha_wrapper").contents()
+                $("recaptcha_wrapper").remove()
+            )
+
+        return @each () ->
+            form = this
+            $(form).on("focusout focusin", "input", (e) ->
+                if e.type == "focusout"
+                    $(form).attr("form-blur-timeout", window.setTimeout(->
+                        log "Losing focus"
+                    , 100));
+                else
+                    if focused_form != form
+                        focused_form = form
+                        log "Appending recaptcha to form"
+                        $("captcha_div").remove()
+                        if settings.always_refresh
+                            Recaptcha.reload()
+                        $(form).append recaptcha_div
+                    window.clearTimeout($(form).attr("form-blur-timeout"))
+                    $(form).removeAttr("form-blur-timeout")
+            );
+            true
+
+
