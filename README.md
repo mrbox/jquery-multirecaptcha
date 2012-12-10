@@ -9,7 +9,8 @@ Usage
 1. Include jQuery(tested on 1.8.3+) in the head section
 2. Include jquery.multirecaptcha in the head section
 3. Run jquery-multirecaptcha with
-::
+
+```javascript
     <script type="text/javascript">
         $(document).ready(function(){
             $("form").multirecaptcha({
@@ -18,3 +19,4 @@ Usage
             });
         });
     </script>
+```
