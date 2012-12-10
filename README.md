@@ -20,3 +20,8 @@ Usage
         });
     </script>
 ```
+
+Configuration options
+--------------------
+
+Todo
