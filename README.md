@@ -29,7 +29,7 @@ Configuration options
 <td>Name</td><td>Default value</td><td>Type</td><td>Description</td>
 </tr>
 <tr>
-<td>public_key</td><td>null</td><td>String</td><td>Your public key from [ReCaptcha Page](http://www.google.com/recaptcha)</td>
+<td>public_key</td><td>null</td><td>String</td><td>Your public key from ReCaptcha Page (http://www.google.com/recaptcha)</td>
 </tr>
 <tr>
 <td>theme</td><td>'red'</td><td>String</td><td>Name of the theme of ReCaptcha</td>
