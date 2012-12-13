@@ -45,4 +45,4 @@ Example
 -------
 
 You need to run with any webserver. On any unix with Python installed, you can run a command
-`python -m SimpleHTTPServer` and the example will be accessible on the url `http://127.0.0.1:8000`
+`python -m SimpleHTTPServer` in the examples directory and the example will be accessible on the url `http://127.0.0.1:8000`
