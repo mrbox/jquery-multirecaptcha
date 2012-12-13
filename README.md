@@ -11,14 +11,12 @@ Usage
 3. Run jquery-multirecaptcha with
 
 ```javascript
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("form").multirecaptcha({
-                public_key: "YOUR_API_KEY",
-                always_refresh: true
-            });
+    $(document).ready(function(){
+        $("form").multirecaptcha({
+            public_key: "YOUR_API_KEY",
+            always_refresh: true
         });
-    </script>
+    });
 ```
 
 Configuration options
